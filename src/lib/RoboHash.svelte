@@ -129,6 +129,9 @@
     let mouthIndex = 1;
     let accessoryIndex = 2;
 
+    if(string === "TPHp5v7aZbfmHFL5w/nEM9nToyATqyvsyt/JDPR2dkk=") {
+        eyesIndex = 2;
+    }
 
 
 </script>
