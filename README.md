@@ -1,6 +1,6 @@
 # Robohash Animated SVG in svelte
 
-
+![image description](static/robot.svg)
 
 
 ## Developing
