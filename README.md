@@ -35,7 +35,9 @@ Any text in the value property will be hashed and from the hash we construct a r
 ## References
 [Robohash](https://robohash.org/) robots created by Zikri Kader
 
-Svg version of robots came from [elapouya django-robohash-svg](https://github.com/elapouya/django-robohash-svg)
+Svg version of robots came from [elapouya django-robohash-svg](https://github.com/elapouya/django-robohash-svg).
+
+Origin of the svg robots is [nimiq](https://github.com/nimiq/robohash) who also wrote this [design blog post](https://medium.com/nimiq/devblog-2-identicons-be50dca91d55). 
 
 ## Contribute
 If you have suggestions for how this app could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
