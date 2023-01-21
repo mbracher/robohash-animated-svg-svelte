@@ -1,13 +1,13 @@
 <script  lang="ts">
-	import Robohash from "../lib/robohash.svelte";
+	import RobohashAnimatedSvg from "$lib/RobohashAnimatedSvg.svelte";
 
-    let robot1: Robohash;
+    let robot1: RobohashAnimatedSvg;
 
 </script>
 
 <h1>Welcome to Robohash-animated-svg-svelte</h1>
 <p>
-<Robohash bind:this={robot1} width={500} height={500} value="VCpL+ttOxnunjiptuA5AB+JjFYcAFOMOVPuVLt/HE2Q="/>
+<RobohashAnimatedSvg bind:this={robot1} width={500} height={500} value="VCpL+ttOxnunjiptuA5AB+JjFYcAFOMOVPuVLt/HE2Q="/>
 
 <!-- TODO: enable/disable the right button depending on the state of the animation -->
 <button on:click={() => robot1.start()}>start animation</button>
@@ -16,6 +16,6 @@
 
 <p>
 {#each Array(10) as _, i}
-    <Robohash width={200} height={200} index={i}/>
+    <RobohashAnimatedSvg width={140} height={140} index={i}/>
 {/each}
 </p>

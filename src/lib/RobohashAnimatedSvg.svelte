@@ -1,19 +1,17 @@
 <script lang="ts">
-    import hash from "js-sha512";
-	import { empty, is_empty } from "svelte/internal";
-
-
+    import {onMount} from 'svelte';
+    let hash;
     export let width: number = 300;
 	export let height: number  = 300;
     export let value: string = '';
     export let index: number = -1;
 
-    let colorIndex;
-    let mouthIndex;
-    let eyesIndex;
-    let accessoryIndex;
-    let bodyIndex;
-    let faceIndex;
+    let colorIndex: number;
+    let mouthIndex: number;
+    let eyesIndex: number;
+    let accessoryIndex: number;
+    let bodyIndex: number;
+    let faceIndex: number;
 
     let svg_element: any; //TODO: what type to use here?
     export function start() {
@@ -167,6 +165,11 @@
         '<path d="M122.5 88.5v6s3 4 13 3c12.5-.5 16-5 16-5v-6l-2-3a63.26 63.26 0 0 0-15 0c-8 1-12 2-12 5z" fill="currentColor"/><path d="M122.5 88.5v6s2 3 13 3 16-5 16-5v-6l-2-3a63.26 63.26 0 0 0-15 0c-8 1-12 2-12 5z" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M142.5 89.5c.2-.05 1.28-.44 1.5-.5-.63-1.83-4.53-5.64-5.5-5.7-7-.41-11.66 1-13.22 2-1.78 1.16-3.78 2.16 1.22 4.16 3 1.04 12 1.04 16 .04z" fill-opacity=".2" fill="#fff"/><path d="M142.5 89.5c4-1 10.83-4.83 3.92-5.92s-19.36.59-21.14 1.75-3.78 2.16 1.22 4.16c3 1.01 12 1.01 16 .01z" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M130.5 52.5L128.24 84s1.26 3.47 7.26 2.47 7.33-3.44 7.33-3.44L132.5 54.5s-1-3-2-2z" fill="#fff" stroke="#000" stroke-miterlimit="10"/><path d="M131.5 55.5l7.06 30.26s3.94-.26 3.94-2.26-10-29-10-29-2-4-1 1z" fill="#d0d2d3"/><path d="M130.5 52.5L128.24 84s1.26 3.47 7.26 2.47 7.33-3.44 7.33-3.44L132.5 54.5s-1-3-2-2z" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M144.09 88.72v8l7.41-4.26v-6l-2-3c.5 2.42-1.68 4.05-5.41 5.26z" fill-opacity=".4"/>',
     ];
 
+    onMount(async () => {
+        const hash_module = await import("js-sha512");
+        hash = hash_module.default;
+
+
     if (value !== '') {
         //TODO: get the current animation state
 
@@ -200,7 +203,7 @@
         }
 
         const chunkSize = 11;      
-        let hashes:Array<BigInt> = [];
+        let hashes:Array<bigint> = [];
         for (let i = 0; i < b.length - chunkSize; i += chunkSize) {
             const chunk = b.slice(i, i + chunkSize);
             let accumulator = BigInt(0)
@@ -212,12 +215,12 @@
             hashes.push(accumulator);
         }
 
-        colorIndex = (hashes[0] % BigInt(color.length));
-        mouthIndex = mouth_color[colorIndex][(hashes[4] % BigInt(mouth.length))];
-        eyesIndex = eyes_color[colorIndex][(hashes[5] % BigInt(eyes.length))];
-        accessoryIndex = accessory_color[colorIndex][(hashes[6] % BigInt(accessory.length))];
-        bodyIndex = body_color[colorIndex][(hashes[7] % BigInt(body.length))];
-        faceIndex = face_color[colorIndex][(hashes[8] % BigInt(face.length))];
+        colorIndex = Number(hashes[0] % BigInt(color.length));
+        mouthIndex = mouth_color[colorIndex][Number(hashes[4] % BigInt(mouth.length))];
+        eyesIndex = eyes_color[colorIndex][Number(hashes[5] % BigInt(eyes.length))];
+        accessoryIndex = accessory_color[colorIndex][Number(hashes[6] % BigInt(accessory.length))];
+        bodyIndex = body_color[colorIndex][Number(hashes[7] % BigInt(body.length))];
+        faceIndex = face_color[colorIndex][Number(hashes[8] % BigInt(face.length))];
     }
     else {
         //TODO: find a nicer way to control the color and parts when not using the hash
@@ -239,8 +242,8 @@
         }
     }
 
-    
-    
+});
+
 
     //TODO: somehow call the robohash with an index and then it will pick the parts you want.
     //      for now ignore the hash if the value is just one digit.
@@ -256,9 +259,10 @@
 
     //TODO: maybe make eyes, mouth and accesory part of the face group.
 
+//
 </script>
 
-<svg bind:this={svg_element} width="{width}" height="{height}" viewBox="0 0 300 300"> 
+<svg bind:this={svg_element} viewBox="0 0 300 300" width="{width}" height="{height}"> 
     <g style="color:{color[colorIndex]}">
         <g id=body>{@html body[bodyIndex]}</g>
         <g id="face">{@html face[faceIndex]}</g>
