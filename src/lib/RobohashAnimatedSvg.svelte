@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {onMount} from 'svelte';
-    let hash;
+    import hash from "js-sha512";
+
     export let width: number = 300;
 	export let height: number  = 300;
     export let value: string = '';
@@ -165,10 +165,6 @@
         '<path d="M122.5 88.5v6s3 4 13 3c12.5-.5 16-5 16-5v-6l-2-3a63.26 63.26 0 0 0-15 0c-8 1-12 2-12 5z" fill="currentColor"/><path d="M122.5 88.5v6s2 3 13 3 16-5 16-5v-6l-2-3a63.26 63.26 0 0 0-15 0c-8 1-12 2-12 5z" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M142.5 89.5c.2-.05 1.28-.44 1.5-.5-.63-1.83-4.53-5.64-5.5-5.7-7-.41-11.66 1-13.22 2-1.78 1.16-3.78 2.16 1.22 4.16 3 1.04 12 1.04 16 .04z" fill-opacity=".2" fill="#fff"/><path d="M142.5 89.5c4-1 10.83-4.83 3.92-5.92s-19.36.59-21.14 1.75-3.78 2.16 1.22 4.16c3 1.01 12 1.01 16 .01z" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M130.5 52.5L128.24 84s1.26 3.47 7.26 2.47 7.33-3.44 7.33-3.44L132.5 54.5s-1-3-2-2z" fill="#fff" stroke="#000" stroke-miterlimit="10"/><path d="M131.5 55.5l7.06 30.26s3.94-.26 3.94-2.26-10-29-10-29-2-4-1 1z" fill="#d0d2d3"/><path d="M130.5 52.5L128.24 84s1.26 3.47 7.26 2.47 7.33-3.44 7.33-3.44L132.5 54.5s-1-3-2-2z" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M144.09 88.72v8l7.41-4.26v-6l-2-3c.5 2.42-1.68 4.05-5.41 5.26z" fill-opacity=".4"/>',
     ];
 
-    onMount(async () => {
-        const hash_module = await import("js-sha512");
-        hash = hash_module.default;
-
 
     if (value !== '') {
         //TODO: get the current animation state
@@ -241,8 +237,6 @@
             accessoryIndex = 0;
         }
     }
-
-});
 
 
     //TODO: somehow call the robohash with an index and then it will pick the parts you want.
