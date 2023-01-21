@@ -1,8 +1,10 @@
 # Robohash Animated SVG in svelte
 
-Construct robot avatar scalable vector image from any text. Construction can be done in the browser. Make the robots come alive by starting the SVG animations. 
+Construct robot avatar scalable vector image from any text. Construction can be done in the browser. Make the robots come alive by starting the SVG animations.
 
 ![animated svg image](robot.svg)
+
+Visit [this demo site](https://robohash-animated-svg-svelte-hml93a2j1-mbracher.vercel.app/) to see a working demo for controlling the animations and changing the robots.
 
 ## WIP
 - [ ] Make animations for all the robots. Currently only for one variant of the eyes we have an animation
