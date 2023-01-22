@@ -15,7 +15,9 @@
 		"robot",
 		"avatar",
 		"svlete",
-		"sveltekit"
+		"sveltekit",
+		"gravatar",
+		"identicon"
 	],
 	"repository": {
 		"type": "git",

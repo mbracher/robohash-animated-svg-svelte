@@ -13,6 +13,7 @@
     let bodyIndex: number;
     let faceIndex: number;
 
+
     let svg_element: any; //TODO: what type to use here?
     export function start() {
         var elements = svg_element.getElementsByClassName("robotStart");
@@ -25,6 +26,10 @@
         for (var i = 0; i < elements.length; i++) {
             elements[i].endElement(); //TODO: maybe check that it is animateable 
         }
+	}
+
+    export function change(new_value: string) {
+
 	}
 
     let color = [
@@ -166,15 +171,11 @@
     ];
 
 
-    if (value !== '') {
+    
+   $:if (value !== '') {
         //TODO: get the current animation state
 
         //TODO: get the classname to reflect the kind of animation so we could extend it with others
-
-
-
-        // Get the same hash method as robohash is using
-        const h = hash.sha512(value);
 
         function hexToBytes(hex:String) {
             for (var bytes = [], c = 0; c < hex.length; c += 1)
@@ -182,7 +183,9 @@
             return bytes;
         }
 
-        const b = hexToBytes(h);
+        // Get the same hash method as robohash is using
+        let h = hash.sha512(value);
+        let b = hexToBytes(h);
 
         function convert(b:number):number {
             if (b>=48 && b<= 57) {
@@ -230,11 +233,11 @@
         }
         else {
             colorIndex = 3;
-            bodyIndex =  0;
-            faceIndex = 0;
-            eyesIndex = 0;
-            mouthIndex = 0;
-            accessoryIndex = 0;
+            bodyIndex =  2;
+            faceIndex = 4;
+            eyesIndex = 1;
+            mouthIndex = 1;
+            accessoryIndex = 2;
         }
     }
 
@@ -255,6 +258,7 @@
 
 //
 </script>
+
 
 <svg bind:this={svg_element} viewBox="0 0 300 300" width="{width}" height="{height}"> 
     <g style="color:{color[colorIndex]}">

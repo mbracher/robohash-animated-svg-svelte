@@ -4,7 +4,7 @@ Construct robot avatar scalable vector image from any text. Construction can be 
 
 ![animated svg image](robot.svg)
 
-Visit [this demo site](https://robohash-animated-svg-svelte-hml93a2j1-mbracher.vercel.app/) to see a working demo for controlling the animations and changing the robots.
+Visit [this demo site](https://robohash-animated-svg-svelte.vercel.app/) to see a working demo for controlling the animations and changing the robots.
 
 ## WIP
 - [ ] Make animations for all the robots. Currently only for one variant of the eyes we have an animation
